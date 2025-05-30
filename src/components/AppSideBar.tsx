@@ -23,6 +23,7 @@ const AppSideBar = ({ collapsed, setCollapsed }: SideBarProps) => {
         { key: '11', icon: <UserOutlined />, label: 'Chức năng kết bạn' },
         { key: '12', icon: <UserOutlined />, label: 'Chức năng tài khoản' },
         { key: '13', icon: <UserOutlined />, label: 'Chức năng mở khóa' }
+        
     ];
 
     return (

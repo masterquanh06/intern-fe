@@ -12,12 +12,12 @@ function App() {
   const [collapsed, setCollapsed] = useState(false);
 
   return (
-    <Layout className="">
+    <Layout className="min-h-screen bg-gray-100">
       <AppHeader />
       <Layout>
         <AppSideBar collapsed={collapsed} setCollapsed={setCollapsed} />
         <Layout className="bg-gray-50">
-          <Content className="p-6">
+          <Content className="p-6 h-screen">
             <div className="grid grid-cols-12 gap-6">
               <div className="col-span-3">
                 <StatsCards />
