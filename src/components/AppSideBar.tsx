@@ -1,65 +1,72 @@
-import { FacebookOutlined, GithubOutlined, MailOutlined, TwitterOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Menu } from "antd";
-import Sider from "antd/es/layout/Sider";
+import { ChevronRight } from 'lucide-react';
 
-// Sidebar Component
-interface SideBarProps {
-    collapsed: boolean;
-    setCollapsed: (collapsed: boolean) => void;
-}
 
-const AppSideBar = ({ collapsed, setCollapsed }: SideBarProps) => {
-    const menuItems = [
-        { key: '1', icon: <UserOutlined />, label: 'Quản lý tài khoản' },
-        { key: '2', icon: <UserOutlined />, label: 'Quản lý Proxy' },
-        { key: '3', icon: <MailOutlined />, label: 'Quản lý Email' },
-        { key: '4', icon: <UserOutlined />, label: 'Quản lý nội dung' },
-        { key: '5', icon: <UserOutlined />, label: 'Tương tác tài khoản' },
-        { key: '6', icon: <UserOutlined />, label: 'Chức năng Seeding' },
-        { key: '7', icon: <UserOutlined />, label: 'Chức năng Chia sẻ' },
-        { key: '8', icon: <UserOutlined />, label: 'Chức năng đăng bài' },
-        { key: '9', icon: <UserOutlined />, label: 'Chức năng bình luận' },
-        { key: '10', icon: <UserOutlined />, label: 'Chức năng nhắn tin' },
-        { key: '11', icon: <UserOutlined />, label: 'Chức năng kết bạn' },
-        { key: '12', icon: <UserOutlined />, label: 'Chức năng tài khoản' },
-        { key: '13', icon: <UserOutlined />, label: 'Chức năng mở khóa' }
-        
-    ];
+const sidebarItems = [
+    { icon: '📊', label: 'Quản lý tài khoản', active: true },
+    { icon: '🎯', label: 'Quản lý Proxy', hasSubmenu: true },
+    { icon: '📧', label: 'Quản lý Email', hasSubmenu: true },
+    { icon: '🏠', label: 'Quản lý nội dung' },
+    { icon: '👥', label: 'Tương tác tài khoản' },
+    { icon: '🌱', label: 'Chức năng Seeding' },
+    { icon: '📢', label: 'Chức năng Chia sẻ', hasSubmenu: true },
+    { icon: '📝', label: 'Chức năng đăng bài', hasSubmenu: true },
+    { icon: '💬', label: 'Chức năng bình luận', hasSubmenu: true },
+    { icon: '💌', label: 'Chức năng nhắn tin', hasSubmenu: true },
+    { icon: '👫', label: 'Chức năng kết bạn', hasSubmenu: true },
+    { icon: '👤', label: 'Chức năng tài khoản', hasSubmenu: true },
+    { icon: '🔓', label: 'Chức năng mở khóa', hasSubmenu: true }
+];
 
+// Components
+const AppSidebar = () => {
     return (
-        <Sider
-            width={250}
-            className="bg-white shadow-sm"
-            collapsed={collapsed}
-            collapsible
-            onCollapse={setCollapsed}
-        >
-            <Menu
-                mode="inline"
-                defaultSelectedKeys={['1']}
-                items={menuItems}
-                className="border-r-0 h-full"
-            />
+        <div className="w-64 bg-white border-r border-gray-200 h-screen overflow-y-auto">
+            {/* Logo */}
+            <div className="p-4 border-b border-gray-200 h-[69px] flex items-center justify-center">
+                <img src="https://mktcare.net/wp-content/uploads/2022/08/Logo-MKT-Tet-2.png" alt="" />
 
-            {!collapsed && (
-                <div className="absolute bottom-4 left-4 right-4">
-                    <div className="bg-gray-50 p-3 rounded-lg">
-                        <div className="text-xs text-gray-600 mb-2">Phiên bản cài đặt</div>
-                        <div className="text-sm font-medium">6.1.9</div>
-                        <div className="text-xs text-gray-600 mt-2">Ngày cập nhật</div>
-                        <div className="text-sm">26/5/2025</div>
-                        <div className="text-xs text-gray-600 mt-2">Số ngày còn lại</div>
-                        <div className="text-sm font-medium">23 ngày</div>
-                    </div>
+            </div>
 
-                    <div className="flex justify-center space-x-2 mt-4">
-                        <Button icon={<FacebookOutlined />} type="text" size="small" />
-                        <Button icon={<TwitterOutlined />} type="text" size="small" />
-                        <Button icon={<GithubOutlined />} type="text" size="small" />
+            {/* Menu Items */}
+            <div className="py-2">
+                {sidebarItems.map((item, index) => (
+                    <div key={index} className={`px-4 py-2 cursor-pointer hover:bg-gray-50 ${item.active ? 'bg-blue-50 border-r-2 border-blue-500' : ''}`}>
+                        <div className="flex items-center justify-between">
+                            <div className="flex items-center space-x-3">
+                                <span className="text-sm">{item.icon}</span>
+                                <span className={`text-sm ${item.active ? 'text-blue-600 font-medium' : 'text-gray-700'}`}>
+                                    {item.label}
+                                </span>
+                            </div>
+                            {item.hasSubmenu && (
+                                <ChevronRight className="w-4 h-4 text-gray-400" />
+                            )}
+                        </div>
                     </div>
+                ))}
+            </div>
+
+            {/* Footer */}
+            <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200 bg-white">
+                <div className="text-xs text-gray-500 space-y-1">
+                    <div className="flex items-center space-x-2">
+                        <span>📱</span>
+                        <span>Phiên bản cài đặt</span>
+                    </div>
+                    <div className="ml-6 font-medium">6.1.9</div>
+                    <div className="flex items-center space-x-2">
+                        <span>📅</span>
+                        <span>Ngày cập nhật</span>
+                    </div>
+                    <div className="ml-6 font-medium">26/5/2025</div>
+                    <div className="flex items-center space-x-2">
+                        <span>⏰</span>
+                        <span>Số ngày còn lại</span>
+                    </div>
+                    <div className="ml-6 font-medium">23 ngày</div>
                 </div>
-            )}
-        </Sider>
+            </div>
+        </div>
     );
 };
-export default AppSideBar;
+export default AppSidebar;

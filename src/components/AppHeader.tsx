@@ -1,58 +1,30 @@
-import {
-    BellOutlined,
-    QuestionCircleOutlined,
-    SettingOutlined
-} from '@ant-design/icons';
-import {
-    Avatar,
-    Badge,
-    Button,
-    Dropdown,
-    Input,
-    Layout
-} from 'antd';
+import { Bell, Settings, User } from "lucide-react";
 
-const { Header, Sider, Content } = Layout;
-const { Search } = Input;
-
-// Header Component
 const AppHeader = () => {
-    const userMenuItems = [
-        { key: '1', label: 'Profile' },
-        { key: '2', label: 'Settings' },
-        { key: '3', label: 'Logout' }
-    ];
+
 
     return (
-        <Header className="bg-white shadow-sm px-6 flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-                <div className="flex items-center space-x-2">
-                    <div className="w-8 h-8 bg-blue-500 rounded flex items-center justify-center">
-                        <span className="text-white font-bold text-sm">M</span>
+        <div className="bg-white border-b border-gray-200 px-6 py-4">
+            <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-4">
+                </div>
+
+                <div className="flex items-center space-x-4">
+                    <span className="text-sm text-gray-600">Không đổi Proxy</span>
+                    <div className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
+                        <Bell className="w-4 h-4 text-white" />
                     </div>
-                    <span className="text-xl font-bold text-gray-800">MKT CARE</span>
+                    <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
+                        <User className="w-4 h-4 text-gray-600" />
+                    </div>
+                    <Settings className="w-5 h-5 text-gray-600 cursor-pointer" />
+                    <div className="text-sm">
+                        <div className="font-medium">VN</div>
+                        <div className="text-xs text-gray-500">Việt Đăng Quốc</div>
+                    </div>
                 </div>
             </div>
-
-            <div className="flex items-center space-x-4">
-                <span className="text-gray-600">Không đổi Proxy</span>
-                <Badge count={5} size="small">
-                    <Button icon={<BellOutlined />} type="text" shape="circle" />
-                </Badge>
-                <Button icon={<QuestionCircleOutlined />} type="text" shape="circle" />
-                <Button icon={<SettingOutlined />} type="text" shape="circle" />
-
-                <Dropdown menu={{ items: userMenuItems }} placement="bottomRight">
-                    <div className="flex items-center space-x-2 cursor-pointer">
-                        <Avatar size="small" className="bg-orange-500">VD</Avatar>
-                        <div className="text-right">
-                            <div className="text-sm font-medium">Việt Đăng Quốc</div>
-                            <div className="text-xs text-gray-500">vietnuacu@gmail.com</div>
-                        </div>
-                    </div>
-                </Dropdown>
-            </div>
-        </Header>
+        </div>
     );
 };
 

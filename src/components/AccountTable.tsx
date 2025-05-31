@@ -1,166 +1,156 @@
-import { PlusOutlined, SearchOutlined } from "@ant-design/icons";
-import { Button, Card, Pagination, Table } from "antd";
-import Search from "antd/es/input/Search";
+import { Button, Input, Pagination } from "antd";
+import { Eye, Search } from "lucide-react";
+import { useState } from "react";
 
-function AccountTable() {
-    const columns = [
-        {
-            title: 'UID',
-            dataIndex: 'uid',
-            key: 'uid',
-            width: 150,
-        },
-        {
-            title: 'Họ và tên',
-            dataIndex: 'name',
-            key: 'name',
-            width: 150,
-        },
-        {
-            title: 'Mật khẩu',
-            dataIndex: 'password',
-            key: 'password',
-            width: 120,
-            render: (password) => (
-                <span>{password.substring(0, 4)}{'*'.repeat(password.length - 4)}</span>
-            )
-        },
-        {
-            title: 'Mã 2FA',
-            dataIndex: 'twoFA',
-            key: 'twoFA',
-            width: 200,
-            render: (code) => (
-                <div className="flex items-center space-x-2">
-                    <span className="font-mono text-xs">{code}</span>
-                    <Button size="small" type="text">👁</Button>
-                </div>
-            )
-        },
-        {
-            title: 'Cookie',
-            dataIndex: 'cookie',
-            key: 'cookie',
-            width: 150,
-            render: (cookie) => (
-                <span className="font-mono text-xs">{cookie.substring(0, 10)}...</span>
-            )
-        },
-        {
-            title: 'Email',
-            dataIndex: 'email',
-            key: 'email',
-            width: 200,
-        }
-    ];
+const accountsData = [
+    {
+        uid: '100002943112206',
+        name: 'Kristina Dewi',
+        password: 'WU82*******',
+        twoFA: 'EU6WZ7O5ZJ3DF3CXBRP...',
+        cookie: 'sb=_hrTZRvPRxsRgRuM_2...',
+        email: 'dtomeka8nvb@outlook.com'
+    },
+    {
+        uid: '100004350152810',
+        name: 'Sylvia Afista San',
+        password: 'w522*****',
+        twoFA: 'ITSYTV4KXMW4C5XSL5...',
+        cookie: 'sb=_hrTZxtv3NVD3tEZxC...',
+        email: 'k0irlerin@outlook.com'
+    },
+    {
+        uid: '100010859430402',
+        name: 'Rafael Ctmv',
+        password: 'OpaL*****',
+        twoFA: 'YKTBWW2VGPRYWLH3E4...',
+        cookie: 'datr=wBzl24-94jt2BzrTCjp...',
+        email: 'meulerlazar1@hotmail.com'
+    },
+    {
+        uid: '100024894187631',
+        name: 'Quốc Việt',
+        password: 'H94r*****',
+        twoFA: 'G43N7TRT36WASSVGZOV...',
+        cookie: 'datr=wBzl20-npp_pCPHn...',
+        email: 'lauriegforlaxyy3@hotmail.com'
+    },
+    {
+        uid: '100046088622726',
+        name: 'Quốc Việt',
+        password: 'Lzqr*****',
+        twoFA: '5Y4O6ADCEVPGA6J3YTG...',
+        cookie: 'datr=03vmZwo7qCc35SKl...',
+        email: 'bibelpella4@hotmail.com'
+    },
+    {
+        uid: '61572881686123',
+        name: '-',
+        password: '@KJZ*****',
+        twoFA: 'ZFWXEX7MPSRTI76BAML...',
+        cookie: 'dblm=%7B%22615728816...',
+        email: 'ajjanbroshi@hotmail.com'
+    }
+];
 
-    const data = [
-        {
-            key: '1',
-            uid: '100002943112206',
-            name: 'Kristina Dewi',
-            password: 'WU82********',
-            twoFA: 'EU6WZ7O52J3DF3CXBRP...',
-            cookie: 'sb=_JnTZRvPRxsRgRuM_2...',
-            email: 'dtomeka8nvb@outlook...'
-        },
-        {
-            key: '2',
-            uid: '100004350152810',
-            name: 'Sylvia Afista San',
-            password: 'w522******',
-            twoFA: 'ITSYTVI4KXM3W4C5XSL5...',
-            cookie: 'sb=_JnTZktv3NVD3IEZxC...',
-            email: 'k0rlerin@outlook.com'
-        },
-        {
-            key: '3',
-            uid: '100010859430402',
-            name: 'Rafael Ctmv',
-            password: 'Qb8l*******',
-            twoFA: 'YKTBWW2VGPRYWLH3E4...',
-            cookie: 'datr=wBzl24-94jt2BrzfCjp...',
-            email: 'meulerIazar1@hotmail...'
-        },
-        {
-            key: '4',
-            uid: '100024894187631',
-            name: 'Quốc Việt',
-            password: 'H96r*******',
-            twoFA: 'G43N7TRT36WASSVGZOV...',
-            cookie: 'datr=wBzl20-npp_pCPHtn...',
-            email: 'lauriegforlaxyy3@hotn...'
-        },
-        {
-            key: '5',
-            uid: '100046088622726',
-            name: 'Quốc Việt',
-            password: 'Lzqr*******',
-            twoFA: '5Y4O6ADCEVFGA6J3YTG...',
-            cookie: 'datr=03vmZwo7qCc35SKI...',
-            email: 'bibelpella4@hotmail.c'
-        },
-        {
-            key: '6',
-            uid: '61572881686123',
-            name: '-',
-            password: '@KJZ*******',
-            twoFA: 'ZFWXEX7MPSRTI76BAMI...',
-            cookie: 'dbln=%7B%226157288168...',
-            email: 'ajjanbroshi@hotmail.c'
-        }
-    ];
+
+const AccountsTable = () => {
+    const [currentPage, setCurrentPage] = useState(1);
 
     return (
-        <Card>
-            <div className="flex justify-between items-center mb-4">
-                <h2 className="text-lg font-semibold">Danh sách tài khoản</h2>
-                <div className="flex items-center space-x-4">
-                    <div className="flex items-center space-x-2 text-sm">
-                        <span>Tổng số: <strong>6</strong></span>
-                        <span>Live: <strong className="text-green-500">3</strong></span>
-                        <span>Die: <strong className="text-red-500">3</strong></span>
-                        <span>Đã chọn: <strong>0</strong></span>
+        <div className="bg-white rounded-lg border border-gray-200">
+            {/* Table Header */}
+            <div className="px-4 py-3 border-b border-gray-200">
+                <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-4">
+                        <Input
+                            placeholder="Tìm kiếm"
+                            prefix={<Search className="w-4 h-4 text-gray-400" />}
+                            className="w-64"
+                        />
+                        <div className="flex items-center space-x-2 text-sm text-gray-600">
+                            <span>Tổng số: 6</span>
+                            <span>Live: 3</span>
+                            <span>Die: 3</span>
+                            <span>Đã chọn: 0</span>
+                        </div>
                     </div>
-                    <Button type="primary" icon={<PlusOutlined />}>
-                        Thêm tài khoản
-                    </Button>
-                    <Button>Xuất dữ liệu</Button>
-                    <Button>Thùng rác</Button>
-                    <Button>Tùy chỉnh cột</Button>
+                    <div className="flex items-center space-x-2">
+                        <Button>Đồng trình duyệt</Button>
+                        <Button>Thùng rác</Button>
+                        <Button>Tùy chỉnh cột</Button>
+
+                    </div>
                 </div>
             </div>
 
-            <div className="mb-4">
-                <Search
-                    placeholder="Tìm kiếm"
-                    style={{ width: 300 }}
-                    prefix={<SearchOutlined />}
-                />
+            {/* Table Content */}
+            <div className="overflow-x-auto">
+                <table className="w-full">
+                    <thead className="bg-gray-50">
+                        <tr>
+                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                                <input type="checkbox" className="rounded" />
+                            </th>
+                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">UID</th>
+                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Họ và tên</th>
+                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Mật khẩu</th>
+                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Mã 2FA</th>
+                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Cookie</th>
+                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
+                        </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-200">
+                        {accountsData.map((account, index) => (
+                            <tr key={index} className="hover:bg-gray-50">
+                                <td className="px-4 py-3">
+                                    <input type="checkbox" className="rounded" />
+                                </td>
+                                <td className="px-4 py-3 text-sm text-gray-900">{account.uid}</td>
+                                <td className="px-4 py-3 text-sm text-gray-900">{account.name}</td>
+                                <td className="px-4 py-3 text-sm text-gray-900">
+                                    <div className="flex items-center space-x-2">
+                                        <span>{account.password}</span>
+                                        <Eye className="w-4 h-4 text-gray-400 cursor-pointer" />
+                                    </div>
+                                </td>
+                                <td className="px-4 py-3 text-sm text-gray-900">
+                                    <div className="flex items-center space-x-2">
+                                        <span className="truncate max-w-32">{account.twoFA}</span>
+                                        <Eye className="w-4 h-4 text-gray-400 cursor-pointer" />
+                                    </div>
+                                </td>
+                                <td className="px-4 py-3 text-sm text-gray-900">
+                                    <div className="flex items-center space-x-2">
+                                        <span className="truncate max-w-32">{account.cookie}</span>
+                                        <Eye className="w-4 h-4 text-gray-400 cursor-pointer" />
+                                    </div>
+                                </td>
+                                <td className="px-4 py-3 text-sm text-gray-900">
+                                    <span className="truncate max-w-32">{account.email}</span>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </div>
 
-            <Table
-                columns={columns}
-                dataSource={data}
-                pagination={false}
-                scroll={{ x: 1200 }}
-                size="small"
-            />
-
-            <div className="flex justify-between items-center mt-4">
-                <span className="text-sm text-gray-500">
+            {/* Pagination */}
+            <div className="px-4 py-3 border-t border-gray-200 flex items-center justify-between">
+                <div className="text-sm text-gray-600">
                     Hiển thị 1 đến 6 trong 6 Dữ liệu
-                </span>
+                </div>
                 <Pagination
-                    current={1}
+                    current={currentPage}
                     total={1000}
-                    pageSize={10}
-                    showSizeChanger={false}
-                    size="small"
+                    pageSize={50}
+                    showSizeChanger
+                    showQuickJumper
+                    onChange={(page) => setCurrentPage(page)}
                 />
             </div>
-        </Card>
+        </div>
     );
-}
+};
 
-export default AccountTable;
+export default AccountsTable;
