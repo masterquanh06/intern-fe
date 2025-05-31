@@ -31,14 +31,16 @@ function App() {
             </div>
             <div className="flex space-x-6 mt-4">
               {/* Left Content */}
-              <div className="flex-1">
+              <div className="">
                 <StatsCards />
-                <AccountsTable />
+                <CategoryManagement />
+
               </div>
 
               {/* Right Sidebar */}
-              <div className="w-80">
-                <CategoryManagement />
+              <div className="flex-1 bg-white rounded-lg p-4 border border-gray-200">
+                <AccountsTable />
+
               </div>
             </div>
           </div>
@@ -50,4 +52,4 @@ function App() {
 
 
 
-export default App
+export default App;

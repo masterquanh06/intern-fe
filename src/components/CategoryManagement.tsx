@@ -14,11 +14,17 @@ const CategoryManagement = () => {
       <div className="space-y-2">
         <div className="text-sm text-gray-600 mb-2">Tất cả</div>
         <div className="flex items-center justify-between p-2 hover:bg-gray-50 rounded">
-          <span className="text-sm">demo</span>
+          <div className="flex items-center space-x-2">
+            <input type="checkbox" className="rounded" />
+            <span className="text-sm">demo</span>
+          </div>
           <MoreHorizontal className="w-4 h-4 text-gray-400 cursor-pointer" />
         </div>
         <div className="flex items-center justify-between p-2 hover:bg-gray-50 rounded">
-          <span className="text-sm">Acc Chính</span>
+          <div className="flex items-center space-x-2">
+            <input type="checkbox" className="rounded" />
+            <span className="text-sm">Acc chính</span>
+          </div>
           <MoreHorizontal className="w-4 h-4 text-gray-400 cursor-pointer" />
         </div>
       </div>

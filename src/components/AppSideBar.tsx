@@ -22,7 +22,7 @@ const AppSidebar = () => {
     return (
         <div className="w-64 bg-white border-r border-gray-200 h-screen overflow-y-auto">
             {/* Logo */}
-            <div className="p-4 border-b border-gray-200 h-[69px] flex items-center justify-center">
+            <div className="p-4 border-b border-gray-200 h-[69px] flex">
                 <img src="https://mktcare.net/wp-content/uploads/2022/08/Logo-MKT-Tet-2.png" alt="" />
 
             </div>
@@ -47,7 +47,7 @@ const AppSidebar = () => {
             </div>
 
             {/* Footer */}
-            <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200 bg-white">
+            <div className="bottom-0 left-0 right-0 p-4 border-t border-gray-200 bg-white">
                 <div className="text-xs text-gray-500 space-y-1">
                     <div className="flex items-center space-x-2">
                         <span>📱</span>
