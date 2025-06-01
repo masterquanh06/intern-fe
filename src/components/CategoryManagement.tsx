@@ -3,7 +3,7 @@ import { MoreHorizontal, Plus } from "lucide-react";
 
 const CategoryManagement = () => {
   return (
-    <div className="bg-white rounded-lg h-screen p-4 border border-gray-200 mb-6">
+    <div className="bg-white rounded-lg h-full p-4 border border-gray-200">
       <h3 className="font-medium text-gray-800 mb-4">Quản lý danh mục</h3>
       <div className="flex space-x-2 mb-4">
         <Input placeholder="Tìm kiếm" className="flex-1" />

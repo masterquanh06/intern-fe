@@ -10,14 +10,14 @@ import StatsCards from './components/StatCards';
 function App() {
 
   return (
-    <div className="flex h-screen bg-gray-100">
+    <div className="flex bg-gray-100">
       <AppSidebar />
 
       <div className="flex-1 flex flex-col overflow-hidden">
         <AppHeader />
 
         <div className="flex-1 overflow-y-auto">
-          <div className="p-6">
+          <div className="p-6 h-full flex flex-col space-y-6">
             <div className="flex space-x-6 justify-between">
               <h1 className="text-xl font-semibold text-gray-800">Danh sách tài khoản</h1>
               <div className="flex items-center space-x-2">
@@ -29,9 +29,9 @@ function App() {
 
               </div>
             </div>
-            <div className="flex space-x-6 mt-4">
+            <div className="flex flex-1 space-x-6 mt-4">
               {/* Left Content */}
-              <div className="">
+              <div className="flex-1 flex flex-col space-y-6 max-w-2xs">
                 <StatsCards />
                 <CategoryManagement />
 

@@ -58,86 +58,88 @@ const AccountsTable = () => {
     const [currentPage, setCurrentPage] = useState(1);
 
     return (
-        <div className="bg-white rounded-lg border border-gray-200">
-            {/* Table Header */}
-            <div className="px-4 py-3 border-b border-gray-200">
-                <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-4">
-                        <Input
-                            placeholder="Tìm kiếm"
-                            prefix={<Search className="w-4 h-4 text-gray-400" />}
-                            className="w-64"
-                        />
-                        <div className="flex items-center space-x-2 text-sm text-gray-600">
-                            <span>Tổng số: 6</span>
-                            <span>Live: 3</span>
-                            <span>Die: 3</span>
-                            <span>Đã chọn: 0</span>
+        <div className="flex flex-col justify-between h-full">
+            {/* Nội dung bảng */}
+            <div className="flex-1 bg-white rounded-lg border border-gray-200 m-4">
+                {/* Table Header */}
+                <div className="px-4 py-3 border-b border-gray-200">
+                    <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-4">
+                            <Input
+                                placeholder="Tìm kiếm"
+                                prefix={<Search className="w-4 h-4 text-gray-400" />}
+                                className="w-64"
+                            />
+                            <div className="flex items-center space-x-2 text-sm text-gray-600 whitespace-nowrap">
+                                <span>Tổng số: <span className="text-blue-400">6</span></span>
+                                <span>Live: <span className="text-green-400">3</span></span>
+                                <span>Die: <span className="text-red-400">3</span></span>
+                                <span>Đã chọn:  <span className="text-blue-400">0</span></span>
+                            </div>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                            <Button>Đồng trình duyệt</Button>
+                            <Button>Thùng rác</Button>
+                            <Button>Tùy chỉnh cột</Button>
                         </div>
                     </div>
-                    <div className="flex items-center space-x-2">
-                        <Button>Đồng trình duyệt</Button>
-                        <Button>Thùng rác</Button>
-                        <Button>Tùy chỉnh cột</Button>
+                </div>
 
-                    </div>
+                {/* Table Content */}
+                <div className="">
+                    <table className="w-full">
+                        <thead className="bg-gray-50">
+                            <tr>
+                                <th className="px-4 py-3">
+                                    <input type="checkbox" className="rounded" />
+                                </th>
+                                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">UID</th>
+                                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Họ và tên</th>
+                                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Mật khẩu</th>
+                                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Mã 2FA</th>
+                                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Cookie</th>
+                                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y divide-gray-200">
+                            {accountsData.map((account, index) => (
+                                <tr key={index} className="hover:bg-gray-50">
+                                    <td className="px-4 py-3">
+                                        <input type="checkbox" className="rounded" />
+                                    </td>
+                                    <td className="px-4 py-3 text-sm text-gray-900">{account.uid}</td>
+                                    <td className="px-4 py-3 text-sm text-gray-900">{account.name}</td>
+                                    <td className="px-4 py-3 text-sm text-gray-900">
+                                        <div className="flex items-center space-x-2">
+                                            <span>{account.password}</span>
+                                            <Eye className="w-4 h-4 text-gray-400 cursor-pointer" />
+                                        </div>
+                                    </td>
+                                    <td className="px-4 py-3 text-sm text-gray-900">
+                                        <div className="flex items-center space-x-2">
+                                            <span className="truncate max-w-32">{account.twoFA}</span>
+                                            <Eye className="w-4 h-4 text-gray-400 cursor-pointer" />
+                                        </div>
+                                    </td>
+                                    <td className="px-4 py-3 text-sm text-gray-900">
+                                        <div className="flex items-center space-x-2">
+                                            <span className="truncate max-w-32">{account.cookie}</span>
+                                            <Eye className="w-4 h-4 text-gray-400 cursor-pointer" />
+                                        </div>
+                                    </td>
+                                    <td className="px-4 py-3 text-sm text-gray-900">
+                                        <span className="truncate max-w-32">{account.email}</span>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
-            {/* Table Content */}
-            <div className="overflow-x-auto">
-                <table className="w-full">
-                    <thead className="bg-gray-50">
-                        <tr>
-                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
-                                <input type="checkbox" className="rounded" />
-                            </th>
-                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">UID</th>
-                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Họ và tên</th>
-                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Mật khẩu</th>
-                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Mã 2FA</th>
-                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Cookie</th>
-                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
-                        </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-200">
-                        {accountsData.map((account, index) => (
-                            <tr key={index} className="hover:bg-gray-50">
-                                <td className="px-4 py-3">
-                                    <input type="checkbox" className="rounded" />
-                                </td>
-                                <td className="px-4 py-3 text-sm text-gray-900">{account.uid}</td>
-                                <td className="px-4 py-3 text-sm text-gray-900">{account.name}</td>
-                                <td className="px-4 py-3 text-sm text-gray-900">
-                                    <div className="flex items-center space-x-2">
-                                        <span>{account.password}</span>
-                                        <Eye className="w-4 h-4 text-gray-400 cursor-pointer" />
-                                    </div>
-                                </td>
-                                <td className="px-4 py-3 text-sm text-gray-900">
-                                    <div className="flex items-center space-x-2">
-                                        <span className="truncate max-w-32">{account.twoFA}</span>
-                                        <Eye className="w-4 h-4 text-gray-400 cursor-pointer" />
-                                    </div>
-                                </td>
-                                <td className="px-4 py-3 text-sm text-gray-900">
-                                    <div className="flex items-center space-x-2">
-                                        <span className="truncate max-w-32">{account.cookie}</span>
-                                        <Eye className="w-4 h-4 text-gray-400 cursor-pointer" />
-                                    </div>
-                                </td>
-                                <td className="px-4 py-3 text-sm text-gray-900">
-                                    <span className="truncate max-w-32">{account.email}</span>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-
-            {/* Pagination */}
-            <div className="px-4 py-3 border-t border-gray-200 flex items-center justify-between">
-                <div className="text-sm text-gray-600">
+            {/* Pagination luôn ở cuối */}
+            <div className="py-4 flex justify-between items-center bg-white ">
+                <div className="text-sm text-gray-600 mb-2">
                     Hiển thị 1 đến 6 trong 6 Dữ liệu
                 </div>
                 <Pagination

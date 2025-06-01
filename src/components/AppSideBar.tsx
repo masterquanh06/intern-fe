@@ -46,7 +46,6 @@ const AppSidebar = () => {
                 ))}
             </div>
 
-            {/* Footer */}
             <div className="bottom-0 left-0 right-0 p-4 border-t border-gray-200 bg-white">
                 <div className="text-xs text-gray-500 space-y-1">
                     <div className="flex items-center space-x-2">
