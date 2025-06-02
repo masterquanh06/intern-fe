@@ -1,5 +1,5 @@
 import { Button, Input, Pagination } from "antd";
-import { Eye, Search } from "lucide-react";
+import { Columns2, Eye, Search, Trash2, X } from "lucide-react";
 import { useState } from "react";
 
 const accountsData = [
@@ -16,8 +16,8 @@ const accountsData = [
         name: 'Sylvia Afista San',
         password: 'w522*****',
         twoFA: 'ITSYTV4KXMW4C5XSL5...',
-        cookie: 'sb=_hrTZxtv3NVD3tEZxC...',
-        email: 'k0irlerin@outlook.com'
+        cookie: 'sb=_hrTZxtv3NVD3tEZxC.dsankdsadjkashdjkasdhjkasdhkjasdhjkasdhjk,sadhjkasdhasdjkkjdhsajkdshajkdashjkdashjksahjksadhkjkdjashdjksahdjkashjkdashjkashjkashdjksahkdjashdjksahk..',
+        email: 'k0irlerin@.'
     },
     {
         uid: '100010859430402',
@@ -49,7 +49,7 @@ const accountsData = [
         password: '@KJZ*****',
         twoFA: 'ZFWXEX7MPSRTI76BAML...',
         cookie: 'dblm=%7B%22615728816...',
-        email: 'ajjanbroshi@hotmail.com'
+        email: 'ajjanbroshi@hotmail.comffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff'
     }
 ];
 
@@ -60,7 +60,7 @@ const AccountsTable = () => {
     return (
         <div className="flex flex-col justify-between h-full">
             {/* Nội dung bảng */}
-            <div className="flex-1 bg-white rounded-lg border border-gray-200 m-4">
+            <div className="flex-1 bg-white rounded-lg border border-gray-200 m-4 overflow-x-scroll">
                 {/* Table Header */}
                 <div className="px-4 py-3 border-b border-gray-200">
                     <div className="flex items-center justify-between">
@@ -78,16 +78,25 @@ const AccountsTable = () => {
                             </div>
                         </div>
                         <div className="flex items-center space-x-2">
-                            <Button>Đồng trình duyệt</Button>
-                            <Button>Thùng rác</Button>
-                            <Button>Tùy chỉnh cột</Button>
+                            <Button className="flex items-center space-x-1">
+                                <X size={16} />
+                                <span>Đóng trình duyệt</span>
+                            </Button>
+                            <Button className="flex items-center space-x-1">
+                                <Trash2 size={16} />
+                                <span>Thùng rác</span>
+                            </Button>
+                            <Button className="flex items-center space-x-1">
+                                <Columns2 size={16} />
+                                <span>Tùy chỉnh cột</span>
+                            </Button>
                         </div>
                     </div>
                 </div>
 
                 {/* Table Content */}
-                <div>
-                    <table className="w-full">
+                <div className="">
+                    <table className="min-w-full divide-y divide-gray-200 select-none">
                         <thead className="bg-gray-50">
                             <tr>
                                 <th className="px-4 py-3">
@@ -101,33 +110,33 @@ const AccountsTable = () => {
                                 <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y divide-gray-200">
+                        <tbody className="divide-y divide-gray-200 ">
                             {accountsData.map((account, index) => (
                                 <tr key={index} className="hover:bg-gray-50">
                                     <td className="px-4 py-3">
                                         <input type="checkbox" className="rounded" />
                                     </td>
-                                    <td className="px-4 py-3 text-sm text-gray-900">{account.uid}</td>
-                                    <td className="px-4 py-3 text-sm text-gray-900">{account.name}</td>
-                                    <td className="px-4 py-3 text-sm text-gray-900">
+                                    <td className="px-4 py-3 text-sm text-gray-900 max-h-[100px] ">{account.uid}</td>
+                                    <td className="px-4 py-3 text-sm text-gray-900 max-h-[100px] ">{account.name}</td>
+                                    <td className="px-4 py-3 text-sm text-gray-900 max-h-[100px] ">
                                         <div className="flex items-center space-x-2">
                                             <span>{account.password}</span>
                                             <Eye className="w-4 h-4 text-gray-400 cursor-pointer" />
                                         </div>
                                     </td>
-                                    <td className="px-4 py-3 text-sm text-gray-900">
+                                    <td className="px-4 py-3 text-sm text-gray-900 max-h-[100px] ">
                                         <div className="flex items-center space-x-2">
                                             <span className="truncate max-w-32">{account.twoFA}</span>
                                             <Eye className="w-4 h-4 text-gray-400 cursor-pointer" />
                                         </div>
                                     </td>
-                                    <td className="px-4 py-3 text-sm text-gray-900">
+                                    <td className="px-4 py-3 text-sm text-gray-900 max-h-[100px] ">
                                         <div className="flex items-center space-x-2">
                                             <span className="truncate max-w-32">{account.cookie}</span>
                                             <Eye className="w-4 h-4 text-gray-400 cursor-pointer" />
                                         </div>
                                     </td>
-                                    <td className="px-4 py-3 text-sm text-gray-900">
+                                    <td className="px-4 py-3 text-sm text-gray-900 max-h-[100px] ">
                                         <span className="truncate max-w-32">{account.email}</span>
                                     </td>
                                 </tr>
@@ -151,6 +160,8 @@ const AccountsTable = () => {
                     onChange={(page) => setCurrentPage(page)}
                 />
             </div>
+
+
         </div>
     );
 };

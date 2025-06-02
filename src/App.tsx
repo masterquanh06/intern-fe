@@ -31,15 +31,15 @@ function App() {
             </div>
             <div className="flex flex-1 space-x-6 mt-4">
               {/* Left Content */}
-              <div className="flex-1 flex flex-col space-y-6 max-w-2xs">
+              <div className="flex-1 flex flex-col space-y-6 max-w-2xl">
                 <StatsCards />
-                
+
                 <CategoryManagement />
 
               </div>
 
               {/* Right Sidebar */}
-              <div className="flex-1 bg-white rounded-lg p-4 border border-gray-200">
+              <div className="w-3/4 bg-white rounded-lg p-4 border border-gray-200">
                 <AccountsTable />
 
               </div>

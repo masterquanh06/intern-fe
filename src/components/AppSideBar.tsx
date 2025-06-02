@@ -35,28 +35,33 @@ const sidebarItems = [
 
 const AppSidebar = () => {
     return (
-        <div className="w-64 bg-white border-r border-gray-200 h-screen overflow-y-auto">
+        <div className="w-64 bg-white border-r border-gray-200 h-screen flex flex-col justify-between">
             {/* Logo */}
-            <div className="p-4 border-b border-gray-200 h-[69px] flex">
+            <div className="h-[69px] border-b border-gray-200 flex items-center justify-center p-4">
                 <img
                     src="https://mktcare.net/wp-content/uploads/2022/08/Logo-MKT-Tet-2.png"
                     alt="Logo"
+                    className="h-full object-contain"
                 />
             </div>
 
             {/* Menu Items */}
-            <div className="py-2">
+            <div className="flex-1 overflow-auto py-2">
                 {sidebarItems.map((item, index) => (
                     <div
                         key={index}
-                        className={`px-4 py-2 cursor-pointer hover:bg-gray-50 ${item.active ? 'bg-blue-50 border-r-2 border-blue-500' : ''
+                        className={`px-4 py-2 cursor-pointer transition-all duration-200 ${item.active
+                            ? 'bg-blue-50 border-r-4 border-blue-500'
+                            : 'hover:bg-gray-50'
                             }`}
                     >
                         <div className="flex items-center justify-between">
                             <div className="flex items-center space-x-3">
                                 <span>{item.icon}</span>
                                 <span
-                                    className={`text-sm ${item.active ? 'text-blue-600 font-medium' : 'text-gray-700'
+                                    className={`text-sm ${item.active
+                                        ? 'text-blue-600 font-medium'
+                                        : 'text-gray-700'
                                         }`}
                                 >
                                     {item.label}
@@ -71,23 +76,29 @@ const AppSidebar = () => {
             </div>
 
             {/* Footer Info */}
-            <div className="bottom-0 left-0 right-0 p-4 border-t border-gray-200 bg-white">
-                <div className="text-xs text-gray-500 space-y-1">
-                    <div className="flex items-center space-x-2">
-                        <Smartphone size={14} />
-                        <span>Phiên bản cài đặt</span>
+            <div className="p-10 border-t border-gray-200 bg-white">
+                <div className="text-xs text-gray-600 space-y-3 shadow-xl rounded-lg p-4 ">
+                    <div className="flex flex-col justify-between space-y-2 items-center">
+                        <div className="flex items-center space-x-2">
+                            <Smartphone size={16} />
+                            <span>Phiên bản cài đặt</span>
+                        </div>
+                        <span className="font-medium">6.1.9</span>
                     </div>
-                    <div className="ml-6 font-medium">6.1.9</div>
-                    <div className="flex items-center space-x-2">
-                        <Calendar size={14} />
-                        <span>Ngày cập nhật</span>
+                    <div className="flex flex-col justify-between space-y-2 items-center">
+                        <div className="flex items-center space-x-2">
+                            <Calendar size={16} />
+                            <span>Ngày cập nhật</span>
+                        </div>
+                        <span className="font-medium">26/5/2025</span>
                     </div>
-                    <div className="ml-6 font-medium">26/5/2025</div>
-                    <div className="flex items-center space-x-2">
-                        <Clock size={14} />
-                        <span>Số ngày còn lại</span>
+                    <div className="flex flex-col justify-between space-y-2 items-center">
+                        <div className="flex items-center space-x-2">
+                            <Clock size={16} />
+                            <span>Số ngày còn lại</span>
+                        </div>
+                        <span className="font-medium">23 ngày</span>
                     </div>
-                    <div className="ml-6 font-medium">23 ngày</div>
                 </div>
             </div>
         </div>
