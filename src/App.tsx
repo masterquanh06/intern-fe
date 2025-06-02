@@ -33,6 +33,7 @@ function App() {
               {/* Left Content */}
               <div className="flex-1 flex flex-col space-y-6 max-w-2xs">
                 <StatsCards />
+                
                 <CategoryManagement />
 
               </div>

@@ -86,7 +86,7 @@ const AccountsTable = () => {
                 </div>
 
                 {/* Table Content */}
-                <div className="">
+                <div>
                     <table className="w-full">
                         <thead className="bg-gray-50">
                             <tr>
