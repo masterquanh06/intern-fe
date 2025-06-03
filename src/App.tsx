@@ -1,5 +1,5 @@
 import { Button } from 'antd';
-import { Plus } from 'lucide-react';
+import { Download, Plus } from 'lucide-react';
 import './App.css';
 import AccountsTable from './components/AccountTable';
 import AppHeader from './components/AppHeader';
@@ -10,7 +10,7 @@ import StatsCards from './components/StatCards';
 function App() {
 
   return (
-    <div className="flex bg-gray-100">
+    <div className="flex">
       <AppSidebar />
 
       <div className="flex-1 flex flex-col overflow-hidden">
@@ -25,7 +25,10 @@ function App() {
                 <Button type="primary" icon={<Plus className="w-4 h-4" />}>
                   Thêm tài khoản
                 </Button>
-                <Button>Xuất dữ liệu</Button>
+                <Button className="flex items-center space-x-1">
+                  <Download size={16} />
+                  <span>Xuất dữ liệu</span>
+                </Button>
 
               </div>
             </div>
