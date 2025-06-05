@@ -1,4 +1,4 @@
-import { Button, Input, Pagination } from "antd";
+import { Button, Input, Pagination, Table } from "antd";
 import { Columns2, Eye, Search, Trash2, X } from "lucide-react";
 import { useState } from "react";
 
@@ -55,11 +55,127 @@ const accountsData = [
 
 const AccountsTable = () => {
     const [currentPage, setCurrentPage] = useState(1);
+    const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+
+    const columns = [
+        {
+            title: 'UID',
+            dataIndex: 'uid',
+            key: 'uid',
+            width: 150,
+            render: (text) => (
+                <span style={{ fontSize: '13px', lineHeight: '1.3' }}>{text}</span>
+            ),
+        },
+        {
+            title: 'Họ tên',
+            dataIndex: 'name',
+            key: 'name',
+            width: 150,
+            render: (text) => (
+                <span style={{ fontSize: '13px', lineHeight: '1.3' }}>{text}</span>
+            ),
+        },
+        {
+            title: 'Mật khẩu',
+            dataIndex: 'password',
+            key: 'password',
+            width: 150,
+            render: (text) => (
+                <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                    <span style={{ fontSize: '13px', lineHeight: '1.3' }}>{text}</span>
+                    <Eye className="w-3 h-3 text-gray-400 cursor-pointer" />
+                </div>
+            ),
+        },
+        {
+            title: 'Mã 2FA',
+            dataIndex: 'twoFA',
+            key: 'twoFA',
+            width: 150,
+            render: (text) => (
+                <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                    <span 
+                        style={{ 
+                            fontSize: '13px', 
+                            lineHeight: '1.3',
+                            maxWidth: '96px', 
+                            overflow: 'hidden', 
+                            textOverflow: 'ellipsis',
+                            whiteSpace: 'nowrap'
+                        }}
+                    >
+                        {text}
+                    </span>
+                    <Eye className="w-3 h-3 text-gray-400 cursor-pointer" />
+                </div>
+            ),
+        },
+        {
+            title: 'Cookie',
+            dataIndex: 'cookie',
+            key: 'cookie',
+            width: 150,
+            render: (text) => (
+                <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                    <span 
+                        style={{ 
+                            fontSize: '13px', 
+                            lineHeight: '1.3',
+                            maxWidth: '96px', 
+                            overflow: 'hidden', 
+                            textOverflow: 'ellipsis',
+                            whiteSpace: 'nowrap'
+                        }}
+                    >
+                        {text}
+                    </span>
+                    <Eye className="w-3 h-3 text-gray-400 cursor-pointer" />
+                </div>
+            ),
+        },
+        {
+            title: 'Email',
+            dataIndex: 'email',
+            key: 'email',
+            width: 200,
+            render: (text) => (
+                <span 
+                    style={{ 
+                        fontSize: '13px', 
+                        lineHeight: '1.3',
+                        maxWidth: '96px', 
+                        overflow: 'hidden', 
+                        textOverflow: 'ellipsis',
+                        whiteSpace: 'nowrap',
+                        display: 'block'
+                    }}
+                >
+                    {text}
+                </span>
+            ),
+        },
+    ];
+
+    const rowSelection = {
+        selectedRowKeys,
+        onChange: (selectedRowKeys) => {
+            setSelectedRowKeys(selectedRowKeys);
+        },
+        onSelectAll: (selected, selectedRows, changeRows) => {
+            console.log('Select all:', selected, selectedRows, changeRows);
+        },
+    };
+
+    const dataSource = accountsData.map((item, index) => ({
+        ...item,
+        key: index
+    }));
 
     return (
         <div className="flex flex-col justify-between h-full">
             {/* Nội dung bảng */}
-            <div className="flex-1 bg-white rounded-lg border border-gray-200 m-4 overflow-x-scroll">
+            <div className="flex-1 bg-white rounded-lg border border-gray-200 m-4 overflow-hidden">
                 {/* Table Header */}
                 <div className="px-2 md:px-4 py-3 border-b border-gray-200">
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
@@ -73,7 +189,7 @@ const AccountsTable = () => {
                                 <span>Tổng số: <span className="text-blue-400">6</span></span>
                                 <span>Live: <span className="text-green-400">3</span></span>
                                 <span>Die: <span className="text-red-400">3</span></span>
-                                <span>Đã chọn: <span className="text-blue-400">0</span></span>
+                                <span>Đã chọn: <span className="text-blue-400">{selectedRowKeys.length}</span></span>
                             </div>
                         </div>
                         <div className="flex flex-wrap items-center space-x-2">
@@ -93,56 +209,20 @@ const AccountsTable = () => {
                     </div>
                 </div>
 
-                {/* Table Content */}
-                <div>
-                    <table className="min-w-[700px] md:min-w-full divide-y divide-gray-200 select-none caret-transparent">
-                        <thead>
-                            <tr>
-                                <th className="px-2 md:px-4 py-3">
-                                    <input type="checkbox" className="rounded" />
-                                </th>
-                                <th className="px-2 md:px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">UID</th>
-                                <th className="px-2 md:px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Họ tên</th>
-                                <th className="px-2 md:px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Mật khẩu</th>
-                                <th className="px-2 md:px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Mã 2FA</th>
-                                <th className="px-2 md:px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Cookie</th>
-                                <th className="px-2 md:px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
-                            </tr>
-                        </thead>
-                        <tbody className="divide-y divide-gray-200">
-                            {accountsData.map((account, index) => (
-                                <tr key={index} className="hover:bg-gray-50">
-                                    <td className="px-2 py-1">
-                                        <input type="checkbox" className="rounded" />
-                                    </td>
-                                    <td className="px-2 py-1 text-[11px] text-gray-900 leading-tight">{account.uid}</td>
-                                    <td className="px-2 py-1 text-[11px] text-gray-900 leading-tight">{account.name}</td>
-                                    <td className="px-2 py-1 text-[11px] text-gray-900 leading-tight">
-                                        <div className="flex items-center space-x-1">
-                                            <span>{account.password}</span>
-                                            <Eye className="w-3 h-3 text-gray-400 cursor-pointer" />
-                                        </div>
-                                    </td>
-                                    <td className="px-2 py-1 text-[11px] text-gray-900 leading-tight">
-                                        <div className="flex items-center space-x-1">
-                                            <span className="truncate max-w-24">{account.twoFA}</span>
-                                            <Eye className="w-3 h-3 text-gray-400 cursor-pointer" />
-                                        </div>
-                                    </td>
-                                    <td className="px-2 py-1 text-[11px] text-gray-900 leading-tight">
-                                        <div className="flex items-center space-x-1">
-                                            <span className="truncate max-w-24">{account.cookie}</span>
-                                            <Eye className="w-3 h-3 text-gray-400 cursor-pointer" />
-                                        </div>
-                                    </td>
-                                    <td className="px-2 py-1 text-[11px] text-gray-900 leading-tight">
-                                        <span className="truncate max-w-24">{account.email}</span>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
+                {/* Antd Table */}
+                <Table
+                    columns={columns}
+                    dataSource={dataSource}
+                    rowSelection={rowSelection}
+                    pagination={false}
+                    scroll={{ x: 700 }}
+                    size="small"
+                    className="select-none"
+                    style={{ 
+                        caretColor: 'transparent'
+                    }}
+                    rowClassName="hover:bg-gray-50"
+                />
             </div>
 
             {/* Pagination luôn ở cuối */}
